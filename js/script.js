@@ -1,49 +1,39 @@
 "use strict";
 
-let num = 20;
+const str = "test";
+const arr = [1, 2, 4];
 
-function showFirstMessage(text) {
-    console.log(text);
-    let num = 10;
-};
+console.log(str.length);
 
-showFirstMessage("Hello World!");
-console.log(num);
+console.log(str.[2]); //  пошук по індексу
 
+console.log(str.toUpperCase()); // перетворює на великі букви
 
+console.log(str.toLowerCase()); // перетворює в нижній регістр
 
-function calc(a, b) {
-    return (a + b);
-}
-
-console.log(calc(4, 3));
-console.log(calc(5, 6));
-console.log(calc(10, 6));
+// пошук підстроки
+const fruit = "Some fruit" ;
+console.log(fruit.indexOf("fruit"));
 
 
-function ret() {
-    let num = 50;
-    return num;
-}
-
- const anotherNum = ret();
- console.log(anotherNum);
+// вирізання слів
+const logg = "Hello world";
+console.log(logg.slice(6, 11));
 
 
+console.log(logg.substring(6, 11));
 
-// Function Expression
- const logger = function() {
-    console.log("Hello!")
- };
+// другий аргумент - це кількість символів
+console.log(logg.substr(6, 11));
 
- logger();
+//свойства чисел
 
+// заокруглення
+const num = 12.2;
+console.log(Math.round(num);
 
+//
+const test = "12.2px";
+console.log(parseInt(test)); // повертає в ціле число
 
-
-//  Стрелочная функция
-
-const calcul = (a, b) => {
-    console.log('1');
-    return a + b;
-};
+console.log(parseFloat(test)); // повертає в десятичне число
