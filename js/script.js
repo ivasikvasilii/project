@@ -1,39 +1,94 @@
 "use strict";
 
-const str = "test";
-const arr = [1, 2, 4];
+let numberOfFilms;
 
-console.log(str.length);
+function start() {
+    numberOfFilms = +prompt('Сколько фильмов вы уже смотрели?', '');
 
-console.log(str.[2]); //  пошук по індексу
+    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+        numberOfFilms = +prompt('Сколько фильмов вы уже смотрели?', '');
 
-console.log(str.toUpperCase()); // перетворює на великі букви
+    }
+}
 
-console.log(str.toLowerCase()); // перетворює в нижній регістр
+start();
 
-// пошук підстроки
-const fruit = "Some fruit" ;
-console.log(fruit.indexOf("fruit"));
+const personalMovieDB = {
+    count: numberOfFilms,
+    movies: {},
+    actors: {},
+    genres: [],
+    privat: false 
+};
 
 
-// вирізання слів
-const logg = "Hello world";
-console.log(logg.slice(6, 11));
 
 
-console.log(logg.substring(6, 11));
+function rememberMyFilms() {
+    for (let i = 0; i <2; i++) {
+        const a = prompt('Один из последних просмотренных фильмов?', ''),
+              b = prompt('На сколько оцените его?', '');
+    
+        if (a != null && b != null && a != '' && b != '' && a.length < 50) {
+            personalMovieDB.movies[a] = b;
+            console.log('done');
+        } else {
+            console.log('error');
+            i--;
+        }
+    }
+}
 
-// другий аргумент - це кількість символів
-console.log(logg.substr(6, 11));
+rememberMyFilms();
 
-//свойства чисел
 
-// заокруглення
-const num = 12.2;
-console.log(Math.round(num);
+ function detectPersonalLevel() {
+    if (personalMovieDB.count > 0 && personalMovieDB.count < 10) {
+        console.log('Просмотрено довольно мало фильмов');
+    } else if (personalMovieDB.count >=10 && personalMovieDB.count < 30) {
+        console.log('Вы классический зритель');
+    } else if (personalMovieDB.count >= 30) {
+        console.log('Вы киноман');
+    } else {
+        console.log('Произошла ошибка');
+    }
+ }
 
-//
-const test = "12.2px";
-console.log(parseInt(test)); // повертає в ціле число
+detectPersonalLevel();
 
-console.log(parseFloat(test)); // повертає в десятичне число
+
+
+ // 3 практика
+ // мій варіант
+//  function showMyDB() {
+//      if (personalMovieDB.privat === false) {
+//         console.log(personalMovieDB);  
+//      }
+//  }
+//  showMyDB();
+
+// варіант профі
+ function showMyDB (hidden) {
+     if (!hidden) {
+         console.log(personalMovieDB);
+     }
+ }
+showMyDB(personalMovieDB.privat);
+
+
+function writeYourGenres() {
+    for (let i = 1; i <=3; i++) {
+        const genre = prompt(`Ваш любимый жанр под номером ${i}`); //використовуємо бектики
+        personalMovieDB.genres[i - 1] = genre;
+    }
+}
+
+// інший варіант запису
+// function writeYourGenres() {
+//     for (let i = 1; i <=3; i++) {
+//         personalMovieDB.genres[i - 1] = prompt(`Ваш любимый жанр под номером ${i}`);
+//     }
+// }
+writeYourGenres();
+
+
