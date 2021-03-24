@@ -1,47 +1,43 @@
 "use strict";
 
-// const obj = new Object();
+const arr = [1, 2, 3, 6, 8];
 
-const options = {
-    name: 'test',
-    width: 1024,
-    height: 1024,
-    colors: {
-        border: 'black',
-        bg: 'red'
-    },
-    makeTest: function() {
-        console.log("Test");
-    }
-};
+arr[99] = 0; // додавання елементу в масив під 99 індекс
 
-options.makeTest();
-
-const {border, bg} = options.colors; // деструктуризація (замість options.["colors"] ["border"])
-console.log(border);
+console.log(arr.length);  //length - останній індекс масиву +1
 
 
 
-// console.log(Object.keys(options).length); //рахує кількість свойств в об'єкті
+
+arr.pop(); // видаляє останній елемент з масиву
+arr.push(10); //додає елемент в кінець масиву
+
+// перебор масиву
+for(let i = 0; i < arr.length; i++) {
+    console.log(arr[i]);
+}
 
 
-// console.log(options.["colors"] ["border"]);
+// другий варіант
+for (let value of arr) {
+    console.log(value); 
+}
 
-// delete options.name;
+//інший варіант
 
-// console.log(options);
+const arr = [1, 2, 3, 6, 8];
+arr.forEach(function(item, i, arr) {       //item - значення елементу масиву, i - індекс масиву, arr - ссилка на масив
+    console.log(`${i}: ${item} внутри масива ${arr}`);
+});
 
-//  Перебор свойств + рахує кількість 
-// let counter = 0;
-// for (let key in options) {
-//     if (typeof(options[key]) === 'object') {
-//         for (let i in options[key]) {
-//             console.log(`Свойство ${i} имеет значение ${options[key][i]}`); 
-//             counter++;
-//         }
-//     } else {
-//      console.log(`Свойство ${key} имеет значение ${options[key]}`); 
-//      counter++;  
-//     }   
-// }
-// console.log(counter);
+// перетворення строки в масив
+const str = prompt("", "");
+const products = str.split(", "); 
+products.sort(); //сортує елемент як строки по алфавіту
+console.log(products.join('; ')); //перетворює масив в строку
+
+
+// сортування чисел
+function compareNum (a, b) {
+    return a - b;
+}
