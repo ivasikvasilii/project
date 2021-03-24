@@ -1,43 +1,119 @@
 "use strict";
 
-const arr = [1, 2, 3, 6, 8];
+let a = 5,
+    b = a;
 
-arr[99] = 0; // додавання елементу в масив під 99 індекс
+b = b + 5;
 
-console.log(arr.length);  //length - останній індекс масиву +1
+console.log(b);
+console.log(a);
 
+const obj = {
+    a: 5,
+    b: 1
+};
 
+const copy = obj; //Передаємо не струтуру об'єкта а ссилку (переприсвоюємо об'єкт)
 
+console.log(copy);
+console.log(obj);
 
-arr.pop(); // видаляє останній елемент з масиву
-arr.push(10); //додає елемент в кінець масиву
+// копіювання об'єкта через цикл
+function copyy (mainObj) {
+    let objCopy = {};
 
-// перебор масиву
-for(let i = 0; i < arr.length; i++) {
-    console.log(arr[i]);
+    let key;
+    for (key in mainObj) {
+        objCopy[key] = mainObj[key];
+    }
+
+    return objCopy;
 }
 
+//приклад
+const numbers = {
+    a: 2,
+    b: 5,
+    c: {
+        x: 7,
+        y: 4
+    }
+};
 
-// другий варіант
-for (let value of arr) {
-    console.log(value); 
+const newNumbers = copyy(numbers); // створили копію
+
+newNumbers.a = 10;
+
+console.log(newNumbers);
+console.log(numbers);
+
+// з'єднуємо два об'єкта
+
+const numbers = {
+    a: 2,
+    b: 5,
+    c: {
+        x: 7,
+        y: 4
+    }
+};
+const add = {
+    d: 17,
+    e: 20
+};
+
+console.log(Object.assign(numbers, add));
+
+//з'єднання нового і порожнього об'єкта
+const clone = Object.assign({}, add);
+clone.d = 20;
+console.log(add);
+console.log(clone);
+
+
+//копія масиву
+const oldArray = ['a', 'b', 'c'];
+const newArray = oldArray.slice();  //метод slice - копіює масив
+
+newArray[1] = 'dgfhgjhg';
+console.log(newArray);
+console.log(oldArray); 
+
+
+
+//example
+const video = ['youtube', 'vimeo', 'rutube'],
+      blogs = ['wordpress', 'livejournal', 'blogger'],
+      internet = [...video, ...blogs, 'vk', 'facebook'];
+      
+console.log(internet); 
+
+
+
+//example 2
+
+function log(a, b, c) {
+    console.log(a);
+    console.log(b);
+    console.log(c);
 }
 
-//інший варіант
+const numm = [2, 5, 7];
 
-const arr = [1, 2, 3, 6, 8];
-arr.forEach(function(item, i, arr) {       //item - значення елементу масиву, i - індекс масиву, arr - ссилка на масив
-    console.log(`${i}: ${item} внутри масива ${arr}`);
-});
-
-// перетворення строки в масив
-const str = prompt("", "");
-const products = str.split(", "); 
-products.sort(); //сортує елемент як строки по алфавіту
-console.log(products.join('; ')); //перетворює масив в строку
+log(...numm)
 
 
-// сортування чисел
-function compareNum (a, b) {
-    return a - b;
+
+
+// 4 спосіб копіювання spread operator
+
+const array = ["a", "b"];
+
+const newAarray = [...array];
+
+const q = {
+    one: 1,
+    two: 2
 }
+
+const newObj = {...q};
